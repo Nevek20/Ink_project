@@ -23,14 +23,10 @@ func _physics_process(delta):
 	player_jump(delta)
 	
 	move_and_slide()
-	check_ledge_grab(delta)
 	
 	player_animations()
 	
 	print("state: ", state.keys()[current_state])
-	
-	if state in [state.jump, state.fall]:
-		check_ledge_grab(delta)
 	
 func player_falling(delta: float) -> void:
 	if not is_on_floor():
@@ -40,10 +36,6 @@ func player_falling(delta: float) -> void:
 		animated_sprite_2d.flip_h = false if direction> 0 else true
 		velocity.x += direction * JUMP_HORIZONTAL * delta
 		
-func check_ledge_grab(delta):
-	if $WallCheck.is_colliding() and not $FloorCheck.is_colliding() and velocity.y == 0:
-		current_state = state.grab
-		$Grab_Trigger.disabled = current_state in [state.idle, state.run] or velocity.y < 0 or current_state != state.grab and $TopCheck.is_colliding()
 
 func player_idle(delta):
 	if is_on_floor() and current_state != state.grab:
@@ -81,5 +73,3 @@ func player_animations():
 		animated_sprite_2d.play("jump_animation_1")
 	elif current_state == state.fall:
 		animated_sprite_2d.play("jump_animation_2")
-	elif current_state == state.grab:
-		animated_sprite_2d.play("grab_animation")

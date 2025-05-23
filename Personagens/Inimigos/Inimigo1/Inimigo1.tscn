@@ -152,8 +152,10 @@ animations = [{
 radius = 16.0
 height = 40.0
 
-[node name="Inimigo1" type="CharacterBody2D"]
+[node name="Inimigo1" type="CharacterBody2D" node_paths=PackedStringArray("patrol_point")]
 script = ExtResource("1_bwfgt")
+patrol_point = NodePath("patrol point")
+Velocidade = 4000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -21)
@@ -170,7 +172,7 @@ debug_color = Color(0.984921, 7.70092e-07, 0.50677, 0.42)
 [node name="patrol point" type="Node2D" parent="."]
 
 [node name="patrol point 1" type="Marker2D" parent="patrol point"]
-position = Vector2(245, 0)
+position = Vector2(-139, 0)
 
 [node name="patrol point 2" type="Marker2D" parent="patrol point"]
-position = Vector2(-147, 0)
+position = Vector2(-139, 0)

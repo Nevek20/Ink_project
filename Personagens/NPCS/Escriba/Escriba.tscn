@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmo6qwucask8t"]
+
+[ext_resource type="Script" uid="uid://bcequbj0ju2sg" path="res://Personagens/NPCS/Escriba/escriba.gd" id="1_7e8yh"]
+[ext_resource type="Texture2D" uid="uid://cgdl8o4goy5ml" path="res://Personagens/NPCS/Escriba/Escribá_Idle_NPC.png" id="2_dq6yj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gi7n"]
+size = Vector2(530, 209)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14aui"]
+atlas = ExtResource("2_dq6yj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lkhs"]
+atlas = ExtResource("2_dq6yj")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojtg5"]
+atlas = ExtResource("2_dq6yj")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmpj5"]
+atlas = ExtResource("2_dq6yj")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwf6o"]
+atlas = ExtResource("2_dq6yj")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhi0q"]
+atlas = ExtResource("2_dq6yj")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0fget"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14aui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lkhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojtg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmpj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwf6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhi0q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Escriba" type="CharacterBody2D"]
+script = ExtResource("1_7e8yh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -90)
+shape = SubResource("RectangleShape2D_3gi7n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -66)
+sprite_frames = SubResource("SpriteFrames_0fget")
+animation = &"idle"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
